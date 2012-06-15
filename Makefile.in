@@ -13,7 +13,7 @@ callbk:		callbk.o
 
 
 mybotv3:	mybotv3.o
-	$(CC) -o mybotv3 callbk.o mybotv3.o $(LIBS)
+	$(CC) -o mybotv3 mybotv3.o $(LIBS)
 
 
 clean:
