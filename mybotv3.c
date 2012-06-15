@@ -14,6 +14,50 @@ typedef struct
 
 irc_ctx_t ctx;
 
+void addlog (const char * fmt, ...)
+{
+	FILE * fp;
+	char buf[1024];
+	va_list va_alist;
+
+	va_start (va_alist, fmt);
+#if defined (WIN32)
+	_vsnprintf (buf, sizeof(buf), fmt, va_alist);
+#else
+	vsnprintf (buf, sizeof(buf), fmt, va_alist);
+#endif
+	va_end (va_alist);
+
+	printf ("%s\n", buf);
+
+	if ( (fp = fopen ("irctest.log", "ab")) != 0 )
+	{
+		fprintf (fp, "%s\n", buf);
+		fclose (fp);
+	}
+}
+
+void dump_event (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+{
+	char buf[512];
+	int cnt;
+
+	buf[0] = '\0';
+
+	for ( cnt = 0; cnt < count; cnt++ )
+	{
+		if ( cnt )
+			strcat (buf, "|");
+
+		strcat (buf, params[cnt]);
+	}
+
+
+	addlog ("Event \"%s\", origin: \"%s\", params: %d [%s]", event, origin ? origin : "NULL", cnt, buf);
+/*	add_db_entry(event , origin, params);*/
+}
+
+
 
 void event_join (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
 {
