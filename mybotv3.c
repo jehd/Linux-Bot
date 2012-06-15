@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #include "libircclient.h"
+#include "callbk.h"
 
 typedef struct
 {
@@ -13,6 +14,10 @@ typedef struct
 } irc_ctx_t;
 
 irc_ctx_t ctx;
+
+
+
+
 
 void addlog (const char * fmt, ...)
 {
@@ -36,7 +41,6 @@ void addlog (const char * fmt, ...)
 		fclose (fp);
 	}
 }
-
 void dump_event (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
 {
 	char buf[512];
@@ -57,14 +61,6 @@ void dump_event (irc_session_t * session, const char * event, const char * origi
 /*	add_db_entry(event , origin, params);*/
 }
 
-
-
-void event_join (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
-{
-	dump_event (session, event, origin, params, count);
-	irc_cmd_user_mode (session, "+i");
-	irc_cmd_msg (session, params[0], "Hi all");
-}
 
 
 void event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
