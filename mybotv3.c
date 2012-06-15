@@ -75,6 +75,78 @@ void event_connect (irc_session_t * session, const char * event, const char * or
 	irc_cmd_join (session, ctx->channel, 0);
 }
 
+void event_privmsg (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+{
+	dump_event (session, event, origin, params, count);
+
+	printf ("'%s' said me (%s): %s\n", 
+		origin ? origin : "someone",
+		params[0], params[1] );
+}
+
+void event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+{
+	dump_event (session, event, origin, params, count);
+
+	char nickbuf[128];
+
+	if ( count != 2 )
+		return;
+
+	printf ("'%s' said in channel %s: %s\n", 
+		origin ? origin : "someone",
+		params[0], params[1] );
+
+	if ( !origin )
+		return;
+
+	irc_target_get_nick (origin, nickbuf, sizeof(nickbuf));
+
+	if ( !strcmp (params[1], "quit") )
+		irc_cmd_quit (session, "of course, Master!");
+
+	if ( !strcmp (params[1], "help") )
+	{
+		irc_cmd_msg (session, params[0], "quit, help, dcc chat, dcc send, ctcp");
+	}
+
+	 if ( !strcmp (params[1], "ctcp"))
+	{
+	
+		printf("...> %s <...", params[1]);
+		irc_cmd_ctcp_request (session, nickbuf, "PING 223");
+		irc_cmd_ctcp_request (session, nickbuf, "FINGER");
+		irc_cmd_ctcp_request (session, nickbuf, "VERSION");
+		irc_cmd_ctcp_request (session, nickbuf, "TIME");
+	}
+        
+
+	if ( !strcmp (params[1], "topic") )
+		irc_cmd_topic (session, params[0], 0);
+	else if ( strstr (params[1], "topic ") == params[1] )
+		irc_cmd_topic (session, params[0], params[1] + 6);
+
+	if ( strstr (params[1], "mode ") == params[1] )
+		irc_cmd_channel_mode (session, params[0], params[1] + 5);
+
+	if ( strstr (params[1], "nick ") == params[1] )
+		irc_cmd_nick (session, params[1] + 5);
+
+	if ( strstr (params[1], "whois ") == params[1] )
+		irc_cmd_whois (session, params[1] + 5);
+
+
+
+}
+
+void event_numeric (irc_session_t * session, unsigned int event, const char * origin, const char ** params, unsigned int count)
+{
+	char buf[24];
+	sprintf (buf, "%d", event);
+
+	dump_event (session, buf, origin, params, count);
+}
+
 int main (int argc, char **argv)
 {
 
@@ -93,6 +165,22 @@ int main (int argc, char **argv)
 	callbacks.event_connect = event_connect;
 	callbacks.event_join = event_join;
 
+	callbacks.event_nick = dump_event;
+	callbacks.event_quit = dump_event;
+	callbacks.event_part = dump_event;
+	callbacks.event_mode = dump_event;
+	callbacks.event_topic = dump_event;
+	callbacks.event_kick = dump_event;
+	callbacks.event_channel = event_channel;
+	callbacks.event_privmsg = event_privmsg;
+	callbacks.event_notice = dump_event;
+	callbacks.event_invite = dump_event;
+	callbacks.event_umode = dump_event; 
+
+
+	callbacks.event_unknown = dump_event;
+	callbacks.event_numeric = event_numeric;
+
 
 	s = irc_create_session (&callbacks);
 
@@ -105,6 +193,8 @@ int main (int argc, char **argv)
 	
 	ctx.channel = argv[3];
 	ctx.nick = argv[2];
+
+	irc_set_ctx (s, &ctx);
 
 	// If the port number is specified in the server string, use the port 0 so it gets parsed
 	if ( strchr( argv[1], ':' ) != 0 )
