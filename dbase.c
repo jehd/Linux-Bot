@@ -6,6 +6,7 @@
 #include "libircclient-1.6/include/libircclient.h"
 #include "sqlite3.h"
 #include <time.h>
+#include "dbase.h"
 
 
 
@@ -16,9 +17,10 @@ void add_db_entry(const char * event, const char * origin, const char ** params)
 	sqlite3_stmt *vm;
         char* sql_query;
 	
-	time_t time = time(0);
+	time_t now;
+	now = time(NULL);
 
-        sql_query = sqlite3_mprintf("INSERT INTO events (event, origin, params) VALUES ('%s', '%s', '%s', '%s')", event, origin, params, time);
+        sql_query = sqlite3_mprintf("INSERT INTO events (event, origin, params) VALUES ('%s', '%s', '%s', '%s')", event, origin, params, now);
 	sqlite3_finalize(vm);
 
 }
@@ -34,7 +36,7 @@ char* last_seen(const char * username)
 	char* sql_query;
 	sql_query = sqlite3_mprintf("Select time FROM 'event' WHERE origin = '%s' ORDER BY time DESC", username);
 	
-	sqlite3_prepare(handle, sql_query, strlen(sql_query), &vm, NULL);
+	sqlite3_prepare(dbhandle, sql_query, strlen(sql_query), &vm, NULL);
 
 	sqlite3_finalize(vm);
 
@@ -42,9 +44,12 @@ char* last_seen(const char * username)
 }
 
 
-void create_table(sqlite3 *handle)
+int create_table()
 {
-
-	sqlite3_exec(handle, "CREATE TABLE events (id integer primary key, event text, origin text, params text, time date);", NULL, NULL, NULL);
-
+/*
+	int j;
+	scanf("%x", &j);
+	sqlite3_exec(dbhandle, "CREATE TABLE events (id integer primary key, event text, origin text, params text, time date);", NULL, NULL, NULL);
+*/
+return 1;
 }

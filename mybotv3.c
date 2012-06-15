@@ -12,59 +12,48 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "daemon.h"
+
 void* mylib_handle;
 
 sqlite3 *dbhandle;
 
-sqlite3 *dbhandle;
 
-static void daemonize()
-{
-  pid_t pid, sid;
 
-  if (getppid() == 1) return;
+int (*create_table)();
 
-  pid = fork();
-  if ( pid < 0 ) exit (1);
 
-  /* Wenn ein Kindprozess erzeugt wurde, kann der 
-     Eltern Prozess sich beenden 
-  */
 
-  if (pid > 0) exit (0);
-
-  /* Neues file mode mask */
-  umask(0);
-
-  /* Neue SID Umgebung */
-  sid = setsid();
-  if (sid < 0) exit(1);
-
-  /* Aendern des Arbeitsverzeichnisses */
-  if ((chdir("/") < 0)) exit(1); 
-
-  /* Aendern der default Filedescriptoren */
-  freopen("/dev/null", "r", stdin);
-  freopen("/dev/null", "w", stdout);
-  freopen("/dev/null", "w", stderr);
-}
-
-void (*create_table)();
+/**
+*Main Funktion
+*
+*Verweist die IRC Events auf die jeweiligen Funktionen.
+*Nimmt die Benutzereingabe entgegen.
+*Startet Endlossschleife.
+*
+*@param argv[1] irc server
+*@param argv[2] nickname
+*@param argv[3] channel
+*@param argv[4] logging-Plugins
+*/
 
 int main (int argc, char **argv)
 {
-	daemonize();
+	//daemonize();
 
-	mylib_handle = dlopen("libdb.so", RTLD_NOW);
+	int i;
+	
 	irc_callbacks_t	callbacks;
  	irc_session_t * s;
 	unsigned short port;
 
-	if ( argc != 4 )
+
+	if ( argc < 4 )
 	{
 		printf ("Usage: %s <server> <nick> <channel>\n", argv[0]);
 		return 1;
 	}
+
 
 	memset (&callbacks, 0, sizeof(callbacks));
 
@@ -91,13 +80,7 @@ int main (int argc, char **argv)
 	s = irc_create_session (&callbacks);
 
 
-	sqlite3_open(DB_FILE, &dbhandle);
-
-
-	create_table = (void(*)()) dlsym(mylib_handle, "create_table");
-
-	(*create_table)(dbhandle);
-
+	
 	if ( !s )
 	{
 		printf ("Could not create session\n");
@@ -108,6 +91,43 @@ int main (int argc, char **argv)
 	ctx.nick = argv[2];
 
 	irc_set_ctx (s, &ctx);
+
+	if (argv[4] != NULL)
+	{
+
+		if (strcmp(argv[4], "txt") == 0)
+		{
+			mylib_handle = dlopen("txtlogger.so", RTLD_NOW);
+			logging = 1;
+		}
+		else if (strcmp(argv[4], "db") == 0)
+		{
+
+			mylib_handle = dlopen("dbase.so", RTLD_NOW);
+			if (mylib_handle == NULL)
+			{
+				printf("%s}n", dlerror());
+				return 1;
+			}
+
+
+			sqlite3_open(DB_FILE, &dbhandle);
+
+			create_table = (int(*)()) dlsym(mylib_handle, "create_table");
+			
+			if (create_table == NULL)
+			{
+				printf ("%s\n", dlerror());
+				return 1;
+			}			
+
+			int r = (*create_table)();
+			logging = 2;
+			printf("logging to db started...");
+
+		}
+
+	}
 
 	// If the port number is specified in the server string, use the port 0 so it gets parsed
 	if ( strchr( argv[1], ':' ) != 0 )

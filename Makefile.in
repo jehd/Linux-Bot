@@ -1,20 +1,23 @@
 CC = cc
 CXX = cc
 CFLAGS = -Wall 
-LIBS = -Llibircclient-1.6/src/ -lircclient -lpthread -Llibircclient-1.6/examples/sql/ -lsqlite3 
+LIBS = -Llibircclient-1.6/src/ -lircclient -lpthread -Llibircclient-1.6/examples/sql/ -lsqlite3 -L/
 INCLUDES=-Ilibircclient-1.6/include -Ilibircclient-1.6/examples/sql -I/
 
-EXAMPLES=mybotv3
+EXAMPLES=mybotv3 dbase txtlogger
 
 all:	$(EXAMPLES)
 
-callbk:		callbk.o
-	$(CC) -o callbk callbk.o $(LIBS)
-
-
-mybotv3:	mybotv3.o
+mybotv3:	mybotv3.o callbk.h
 	$(CC) -o mybotv3 mybotv3.o $(LIBS)
 
+dbase:		dbase.o
+	$(CC) -fPIC -c dbase.c $(LIBS)
+	$(CC) -shared -o dbase.so dbase.o
+
+txtlogger:	txtlogger.o
+	$(CC) -fPIC -c txtlogger.c $(LIBS)
+	$(CC) -shared -o txtlogger.so txtlogger.o
 
 clean:
 	-rm -f $(EXAMPLES) *.o *.exe
