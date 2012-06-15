@@ -1,0 +1,45 @@
+CC = cc
+CXX = cc
+CFLAGS = -Wall 
+LIBS = -Llibircclient-1.6/src/ -lircclient -lpthread -Llibircclient-1.6/examples/sql/ -lsqlite3 
+INCLUDES=-Ilibircclient-1.6/include -Ilibircclient-1.6/examples/sql
+
+EXAMPLES=irctest
+
+all:	$(EXAMPLES)
+
+spammer:	spammer.o
+	$(CC) -o spammer spammer.o $(LIBS)
+
+colors:		colors.o
+	$(CXX) -o colors colors.o $(LIBS)
+
+irctest:	irctest.o
+	$(CC) -o irctest irctest.o $(LIBS)
+
+mybotv3:	mybotv3.o
+	$(CC) -o mybotv3 mybotv3.o $(LIBS)
+
+censor:	censor.o
+	$(CXX) -o censor censor.o $(LIBS)
+
+ircftp:	ircftp.o
+	$(CXX) -o ircftp ircftp.o $(LIBS)
+
+mybot: mybot.o
+	$(CC) -o mybot mybot.o $(LIBS)
+
+clean:
+	-rm -f $(EXAMPLES) *.o *.exe
+
+distclean: clean
+	-rm -f Makefile *.log
+
+
+.c.o:
+	@echo "Compiling  $<"
+	@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+.cpp.o:
+	@echo "Compiling  $<"
+	@$(CXX) $(CFLAGS) $(INCLUDES) -c -o $@ $<
