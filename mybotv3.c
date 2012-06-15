@@ -5,20 +5,56 @@
 
 #include "libircclient.h"
 #include "callbk.h"
-/*#include "dbase.h"*/
 #include <dlfcn.h>
 #define DB_FILE "test.db"
 
-irc_ctx_t ctx;
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
 void* mylib_handle;
 
 sqlite3 *dbhandle;
 
+sqlite3 *dbhandle;
+
+static void daemonize()
+{
+  pid_t pid, sid;
+
+  if (getppid() == 1) return;
+
+  pid = fork();
+  if ( pid < 0 ) exit (1);
+
+  /* Wenn ein Kindprozess erzeugt wurde, kann der 
+     Eltern Prozess sich beenden 
+  */
+
+  if (pid > 0) exit (0);
+
+  /* Neues file mode mask */
+  umask(0);
+
+  /* Neue SID Umgebung */
+  sid = setsid();
+  if (sid < 0) exit(1);
+
+  /* Aendern des Arbeitsverzeichnisses */
+  if ((chdir("/") < 0)) exit(1); 
+
+  /* Aendern der default Filedescriptoren */
+  freopen("/dev/null", "r", stdin);
+  freopen("/dev/null", "w", stdout);
+  freopen("/dev/null", "w", stderr);
+}
 
 void (*create_table)();
 
 int main (int argc, char **argv)
 {
+	daemonize();
+
 	mylib_handle = dlopen("libdb.so", RTLD_NOW);
 	irc_callbacks_t	callbacks;
  	irc_session_t * s;
