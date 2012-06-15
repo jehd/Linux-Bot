@@ -3,7 +3,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "libircclient.h"
+#include "libircclient-1.6/include/libircclient.h"
+#include "sqlite3.h"
+
+int logging = 0;
 
 typedef struct
 {
@@ -11,6 +14,7 @@ typedef struct
 	char 	* nick;
 
 } irc_ctx_t;
+
 
 void addlog (const char * fmt, ...)
 {
@@ -131,7 +135,26 @@ void event_channel (irc_session_t * session, const char * event, const char * or
 		irc_cmd_whois (session, params[1] + 5);
 
 
+	char *pch;
+	char search_string[100];
+	strcpy (search_string, ctx.nick);	
+	strncat (search_string, ":", 1);
+	
+	pch = strstr (params[1], search_string);
+	if (pch != NULL)
+	{
+		printf("angesprochen!\n");
+		
+		pch = strstr (params[1], "logging off");
+		if (pch != NULL)
+			logging = 0;
 
+		pch = strstr (params[1], "logging on");
+		if (pch != NULL)
+			logging = 1;
+			
+
+	}
 }
 
 void event_numeric (irc_session_t * session, unsigned int event, const char * origin, const char ** params, unsigned int count)
