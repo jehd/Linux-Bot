@@ -5,19 +5,21 @@
 
 #include "libircclient.h"
 #include "callbk.h"
-#include "dbase.h"
-
+/*#include "dbase.h"*/
+#include <dlfcn.h>
 #define DB_FILE "test.db"
-sqlite3 *dbhandle;
 
 irc_ctx_t ctx;
+void* mylib_handle;
+
+sqlite3 *dbhandle;
 
 
-
+void (*create_table)();
 
 int main (int argc, char **argv)
 {
-
+	mylib_handle = dlopen("libdb.so", RTLD_NOW);
 	irc_callbacks_t	callbacks;
  	irc_session_t * s;
 	unsigned short port;
@@ -54,10 +56,11 @@ int main (int argc, char **argv)
 
 
 	sqlite3_open(DB_FILE, &dbhandle);
-	create_table(dbhandle);
 
 
+	create_table = (void(*)()) dlsym(mylib_handle, "create_table");
 
+	(*create_table)(dbhandle);
 
 	if ( !s )
 	{
