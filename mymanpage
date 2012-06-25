@@ -1,0 +1,18 @@
+.TH "mybotv3-man" "1" "2012" "Julian Essing" "documentation"
+.SH
+NAME
+mybotv3-man
+.SH
+SYNOPSIS
+mybotv3-man [a b c]
+.SH
+BESCHREIBUNG
+mybotv3-man ist eine manpage für das Starten des Bots.
+.SS
+Optionen
+.SS
+a	IRC-Server
+.SS
+b	nickname
+.SS
+c 	logging (1 = textfile, 2 = database)
