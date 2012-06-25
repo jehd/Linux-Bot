@@ -6,8 +6,14 @@
 #include "libircclient-1.6/include/libircclient.h"
 #include "sqlite3.h"
 #include <dlfcn.h>
+#define DB_FILE "test.db"
+
+void* mylib_handle2;
+sqlite3 *dbhandle;
 
 int logging = 0;
+
+void (*add_db_entry)();
 
 typedef struct
 {
@@ -16,7 +22,11 @@ typedef struct
 
 } irc_ctx_t;
 irc_ctx_t ctx;
-
+/*
+void init_mylib_handle(sqlite3 * handle)
+{
+	mylib_handle = &handle;
+}*/
 /**
 *Methode wird bei jedem IRC-Event aufgerufen und behandelt das Logging.
 *
@@ -42,8 +52,8 @@ void dump_event (irc_session_t * session, const char * event, const char * origi
 		strcat (buf, params[cnt]);
 	}
 
-
-	if (logging == 1)
+/*
+	if (logging == 2)
 	{
 		void* myaddlog_handle;
 		void (*addlog)();
@@ -52,8 +62,30 @@ void dump_event (irc_session_t * session, const char * event, const char * origi
 		(*addlog) ("Event \"%s\", origin: \"%s\", params: %d [%s]", event, origin ? origin : "NULL", cnt, buf);
 	}
 
-	//else if (logging == 2)
-		//add_db_entry(event , origin, params);
+	else if (logging == 4)
+	{
+*/
+		mylib_handle2 = dlopen("dbase.so", RTLD_NOW);
+		sqlite3_open(DB_FILE, &dbhandle);
+
+		printf("hier_1\n");
+		add_db_entry = (void(*)()) dlsym(mylib_handle2, "add_db_entry");
+		
+				printf("hier_22\n");
+		if (add_db_entry == NULL)
+		{
+			printf ("%s\n", dlerror());
+		}
+			
+//		(*add_db_entry)(event, origin, params);
+		(*add_db_entry)();
+		printf("hier_3\n");
+			
+				logging = 2;
+				printf("db entry done...");
+
+/*	}
+*/
 }
 
 /**

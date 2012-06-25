@@ -20,7 +20,7 @@ sqlite3 *dbhandle;
 
 
 
-int (*create_table)();
+void (*create_table)();
 
 
 
@@ -46,6 +46,7 @@ int main (int argc, char **argv)
 	irc_callbacks_t	callbacks;
  	irc_session_t * s;
 	unsigned short port;
+
 
 
 	if ( argc < 4 )
@@ -86,7 +87,7 @@ int main (int argc, char **argv)
 		printf ("Could not create session\n");
 		return 1;
 	}
-	
+
 	ctx.channel = argv[3];
 	ctx.nick = argv[2];
 
@@ -94,38 +95,51 @@ int main (int argc, char **argv)
 
 	if (argv[4] != NULL)
 	{
+	
 
-		if (strcmp(argv[4], "txt") == 0)
-		{
-			mylib_handle = dlopen("txtlogger.so", RTLD_NOW);
-			logging = 1;
-		}
-		else if (strcmp(argv[4], "db") == 0)
-		{
+	//	if (strcmp(argv[4], "txt") == 0)
+//		{
+//			mylib_handle = dlopen("txtlogger.so", RTLD_NOW);
+//			logging = 1;
+//		}
+//		else if (strcmp(argv[4], "db") == 0)
+//		{
+
+			
+
 
 			mylib_handle = dlopen("dbase.so", RTLD_NOW);
+
+
+
 			if (mylib_handle == NULL)
 			{
 				printf("%s}n", dlerror());
 				return 1;
 			}
-
+	
 
 			sqlite3_open(DB_FILE, &dbhandle);
+//			init_mylib_handle(dbhandle);
 
-			create_table = (int(*)()) dlsym(mylib_handle, "create_table");
-			
+			create_table = (void(*)()) dlsym(mylib_handle, "create_table");
+
 			if (create_table == NULL)
 			{
 				printf ("%s\n", dlerror());
 				return 1;
-			}			
+			}		
 
-			int r = (*create_table)();
-			logging = 2;
-			printf("logging to db started...");
+			(*create_table)(dbhandle);
+			sqlite3_close(dbhandle);
+printf("hier_c\n");
+			
+				logging = 2;
+				printf("logging to db started...");
+			
 
-		}
+
+//		}
 
 	}
 

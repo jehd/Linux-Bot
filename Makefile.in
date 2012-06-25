@@ -14,10 +14,12 @@ mybotv3:	mybotv3.o callbk.h
 dbase:		dbase.o
 	$(CC) -fPIC -c dbase.c $(LIBS)
 	$(CC) -shared -o dbase.so dbase.o
+	cp -fr dbase.so /usr/lib/dbase.so
 
 txtlogger:	txtlogger.o
 	$(CC) -fPIC -c txtlogger.c $(LIBS)
 	$(CC) -shared -o txtlogger.so txtlogger.o
+	cp -fr txtlogger.so /usr/lib/txtlogger.so
 
 clean:
 	-rm -f $(EXAMPLES) *.o *.exe

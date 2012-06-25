@@ -14,14 +14,18 @@ sqlite3 *dbhandle;
 
 void add_db_entry(const char * event, const char * origin, const char ** params)
 {
+
 	sqlite3_stmt *vm;
         char* sql_query;
 	
 	time_t now;
 	now = time(NULL);
+     
 
-        sql_query = sqlite3_mprintf("INSERT INTO events (event, origin, params) VALUES ('%s', '%s', '%s', '%s')", event, origin, params, now);
+	sql_query = sqlite3_mprintf("INSERT INTO events (id, event, origin, params, time) VALUES ('1', '%s', '%s', '%s', '%s')", event, origin, params, now);
 	sqlite3_finalize(vm);
+
+	printf("hier_2\n");
 
 }
 
@@ -44,12 +48,9 @@ char* last_seen(const char * username)
 }
 
 
-int create_table()
+void create_table(sqlite3 * dbhandlex)
 {
-/*
-	int j;
-	scanf("%x", &j);
-	sqlite3_exec(dbhandle, "CREATE TABLE events (id integer primary key, event text, origin text, params text, time date);", NULL, NULL, NULL);
-*/
-return 1;
+	sqlite3_exec(dbhandlex, "CREATE TABLE events (id integer primary key, event text, origin text, params text, time text);", NULL, NULL, NULL);
+	printf("TABLE CREATED!!!");
+
 }
