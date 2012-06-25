@@ -3,6 +3,7 @@
 ## Inhalt
 
 * README.md
+* license.txt
 * mybotv3.c
 * callbk.h
 * dbase.h
