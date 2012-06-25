@@ -6,7 +6,9 @@
 \item 
 void \hyperlink{dbase_8h_a22dc7ad98a9d622b1c9cb6efdd08d22f}{add\-\_\-db\-\_\-entry} (const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params)
 \item 
-void \hyperlink{dbase_8h_a9853b1820d4379ee3fe29461709d40c8}{print\-\_\-db} ()
+char $\ast$ \hyperlink{dbase_8h_a01b5950659c498ce32a8b1bf5c7a51c8}{print\-\_\-db} ()
+\item 
+char $\ast$ \hyperlink{dbase_8h_aa1efc8422255bc036e9d4393412c784a}{last\-\_\-seen} (const char $\ast$username)
 \item 
 void \hyperlink{dbase_8h_addc31b4cf7d993be3efbf2704ebac49d}{create\-\_\-table} (sqlite3 $\ast$dbhandlex)
 \end{DoxyCompactItemize}
@@ -22,6 +24,17 @@ void \hyperlink{dbase_8h_addc31b4cf7d993be3efbf2704ebac49d}{create\-\_\-table} (
 \item[{const char $\ast$$\ast$}]{params}
 \end{DoxyParamCaption}
 )}}\label{dbase_8h_a22dc7ad98a9d622b1c9cb6efdd08d22f}
+\-Methode trägt ein \-Event in die \-Sqlite3-\/\-Datenbank ein.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em event,\-:} & \-Event-\/\-Name \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Event-\/\-Parameter \\
+\hline
+\end{DoxyParams}
 \hypertarget{dbase_8h_addc31b4cf7d993be3efbf2704ebac49d}{\index{dbase.\-h@{dbase.\-h}!create\-\_\-table@{create\-\_\-table}}
 \index{create\-\_\-table@{create\-\_\-table}!dbase.h@{dbase.\-h}}
 \subsubsection[{create\-\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf create\-\_\-table} (
@@ -29,10 +42,32 @@ void \hyperlink{dbase_8h_addc31b4cf7d993be3efbf2704ebac49d}{create\-\_\-table} (
 \item[{sqlite3 $\ast$}]{dbhandlex}
 \end{DoxyParamCaption}
 )}}\label{dbase_8h_addc31b4cf7d993be3efbf2704ebac49d}
-\hypertarget{dbase_8h_a9853b1820d4379ee3fe29461709d40c8}{\index{dbase.\-h@{dbase.\-h}!print\-\_\-db@{print\-\_\-db}}
+\-Methode erstellt die \-Tabelle events. \-Wird zum \-Programmstart aufgerufen.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em dbhandlex,\-:} & sqlite \-Pointer. \\
+\hline
+\end{DoxyParams}
+\hypertarget{dbase_8h_aa1efc8422255bc036e9d4393412c784a}{\index{dbase.\-h@{dbase.\-h}!last\-\_\-seen@{last\-\_\-seen}}
+\index{last\-\_\-seen@{last\-\_\-seen}!dbase.h@{dbase.\-h}}
+\subsubsection[{last\-\_\-seen}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf last\-\_\-seen} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{username}
+\end{DoxyParamCaption}
+)}}\label{dbase_8h_aa1efc8422255bc036e9d4393412c784a}
+\-Methode gibt aus, wann \-I\-R\-C-\/\-Chatter zum letzten \-Mal gesehen wurde.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em username,\-:} & \-Benutzername des \-I\-R\-C-\/\-Chatters. \\
+\hline
+\end{DoxyParams}
+\hypertarget{dbase_8h_a01b5950659c498ce32a8b1bf5c7a51c8}{\index{dbase.\-h@{dbase.\-h}!print\-\_\-db@{print\-\_\-db}}
 \index{print\-\_\-db@{print\-\_\-db}!dbase.h@{dbase.\-h}}
-\subsubsection[{print\-\_\-db}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-\_\-db} (
+\subsubsection[{print\-\_\-db}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf print\-\_\-db} (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{dbase_8h_a9853b1820d4379ee3fe29461709d40c8}
+)}}\label{dbase_8h_a01b5950659c498ce32a8b1bf5c7a51c8}
+\-Methode holt das gesamte \-Log aus der \-Datenbank. 

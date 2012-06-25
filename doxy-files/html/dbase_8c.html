@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dbase_8c.html#a22dc7ad98a9d622b1c9cb6efdd08d22f">add_db_entry</a> (const char *event, const char *origin, const char **params)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dbase_8c.html#a9853b1820d4379ee3fe29461709d40c8">print_db</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dbase_8c.html#a01b5950659c498ce32a8b1bf5c7a51c8">print_db</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dbase_8c.html#aa1efc8422255bc036e9d4393412c784a">last_seen</a> (const char *username)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dbase_8c.html#addc31b4cf7d993be3efbf2704ebac49d">create_table</a> (sqlite3 *dbhandlex)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
@@ -132,6 +132,15 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Methode trägt ein Event in die Sqlite3-Datenbank ein.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event,:</td><td>Event-Name </td></tr>
+    <tr><td class="paramname">origin,:</td><td>Event-Quelle </td></tr>
+    <tr><td class="paramname">params,:</td><td>Event-Parameter </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -149,6 +158,13 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Methode erstellt die Tabelle events. Wird zum Programmstart aufgerufen.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbhandlex,:</td><td>sqlite Pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -157,7 +173,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* <a class="el" href="dbase_8c.html#aa1efc8422255bc036e9d4393412c784a">last_seen</a> </td>
+          <td class="memname">char* <a class="el" href="dbase_8h.html#aa1efc8422255bc036e9d4393412c784a">last_seen</a> </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>username</em></td><td>)</td>
@@ -166,15 +182,22 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Methode gibt aus, wann IRC-Chatter zum letzten Mal gesehen wurde.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username,:</td><td>Benutzername des IRC-Chatters. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="a9853b1820d4379ee3fe29461709d40c8"></a><!-- doxytag: member="dbase.c::print_db" ref="a9853b1820d4379ee3fe29461709d40c8" args="()" -->
+<a class="anchor" id="a01b5950659c498ce32a8b1bf5c7a51c8"></a><!-- doxytag: member="dbase.c::print_db" ref="a01b5950659c498ce32a8b1bf5c7a51c8" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="dbase_8h.html#a9853b1820d4379ee3fe29461709d40c8">print_db</a> </td>
+          <td class="memname">char* <a class="el" href="dbase_8h.html#a01b5950659c498ce32a8b1bf5c7a51c8">print_db</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -182,6 +205,7 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Methode holt das gesamte Log aus der Datenbank. </p>
 
 </div>
 </div>
@@ -217,7 +241,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 25 2012 18:34:59 for Linux IRC-Bot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 25 2012 19:38:45 for Linux IRC-Bot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

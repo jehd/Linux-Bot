@@ -75,13 +75,66 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h2><a class="anchor" id="sec1"></a>
 Einleitung</h2>
-<p>Hier folgt eine kurze Einleitung...</p>
+<p>Dies ist die Dokumention des IRC-Bots. Der Bot wird über die Kommandozeile gestartet, z.B. ./mybotv3 irc.quakenet.org:6667 mynick db.</p>
+<p>(Für nähere Informationen siehe manpage.) </p>
+<h2><a class="anchor" id="sec1"></a>
+Einleitung</h2>
+<h2><a class="anchor" id="sec1_1"></a>
+Strukturierung des Codes</h2>
+<ul>
+<li>Main-Funktion (<a class="el" href="mybotv3_8c.html">mybotv3.c</a>)</li>
+<li>Dämonisierung (<a class="el" href="daemon_8h.html">daemon.h</a>)</li>
+<li>Sqlite3-Logging (<a class="el" href="dbase_8h.html">dbase.h</a>, <a class="el" href="dbase_8c.html">dbase.c</a>, dbase.so)</li>
+<li>DB-Loggin (<a class="el" href="dbase_8h.html">dbase.h</a>, <a class="el" href="dbase_8c.html">dbase.c</a>, dbase.so)</li>
+<li>Events (<a class="el" href="callbk_8h.html">callbk.h</a>) </li>
+</ul>
+<h2><a class="anchor" id="sec1_2"></a>
+README</h2>
+<p>Readme vorhanden (README.md) </p>
+<h2><a class="anchor" id="sec1_3"></a>
+License</h2>
+<p>Lizenzbestimmungen (LGPL) in license.txt </p>
+<h2><a class="anchor" id="sec1_4"></a>
+Manpage</h2>
+<p>Manpage vorhanden (mymanpage) </p>
+<h2><a class="anchor" id="sec1_5"></a>
+Makefile</h2>
+<p>Manpage vorhanden (Makefile.h)</p>
 <h2><a class="anchor" id="sec2"></a>
-Subsysteme</h2>
+Funktionalitäten</h2>
 <h3><a class="anchor" id="sec2_1"></a>
-Motorsteuerung</h3>
+Grundfunktionalitäten</h3>
+<ul>
+<li>Der Bot implementiert die libircclient-Bibliothek (/libircclient-1.6)</li>
+<li>Der Bot kann sich auf einem IRC-Server anmelden (<a class="el" href="mybotv3_8c.html">mybotv3.c</a> -&gt; irc_connect)</li>
+<li>Der Bot kann sich in einem Channel anmelden. (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event_connect -&gt; irc_cmd_join)</li>
+<li>Servername und Channel werden über die Kommandozeile als Parameter übergeben. (z.B. ./mybotv3 irc.quakenet.org:6667 mynick db)</li>
+<li>Der Name des Bots wird über die Kommandozeile angegeben.</li>
+<li>Der Bot hat weitere Steuerungsmöglichkeiten. </li>
+</ul>
 <h3><a class="anchor" id="sec2_2"></a>
-Ablaufsteuerung</h3>
+Steuerung des Bots</h3>
+<ul>
+<li>Der Bot reagiert auf "Botname: xxx". (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event_channel)</li>
+<li>Das Logging ist per IRC-Commnand an/abschaltbar. "logging on" "logging off". (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event_channel)</li>
+<li>Der Bot gibt ein lastseen an. (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event_channel -&gt; <a class="el" href="dbase_8c.html">dbase.c</a>)</li>
+<li>Der Bot gibt das log in den Chat aus. (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event_channel -&gt; <a class="el" href="dbase_8c.html">dbase.c</a>) </li>
+</ul>
+<h3><a class="anchor" id="sec2_3"></a>
+Dämonisieren</h3>
+<p>Bot wird über daemonize() zu Beginn der main dämonisiert (<a class="el" href="mybotv3_8c.html">mybotv3.c</a> -&gt; <a class="el" href="daemon_8h.html">daemon.h</a>); </p>
+<h3><a class="anchor" id="sec2_4"></a>
+Plugin-Mechanismus</h3>
+<p>Logging über Plugin gelöst (dbase.so) </p>
+<h3><a class="anchor" id="sec2_5"></a>
+Weitere Plugins</h3>
+<p>Logging in Textdatei (txtlogger.so) </p>
+<h3><a class="anchor" id="sec2_5"></a>
+Weitere Plugins</h3>
+<p>Der Bot reagiert auf private Nachrichten (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event_privmsg) </p>
+<h3><a class="anchor" id="sec2_6"></a>
+Per Command Topic ändern, Nick change etc.</h3>
+<p>Der Bot ändert auf Befehl das Topic, seinen Nick etc. (<a class="el" href="callbk_8h.html">callbk.h</a> -&gt; event-channel) </p>
 </div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -100,7 +153,7 @@ Ablaufsteuerung</h3>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 25 2012 18:35:00 for Linux IRC-Bot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 25 2012 19:38:45 for Linux IRC-Bot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

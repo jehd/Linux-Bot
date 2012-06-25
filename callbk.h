@@ -11,6 +11,11 @@
 void* mylib_handle2;
 sqlite3 *dbhandle;
 
+/**
+*Variable schaltet das Logging an/aus (0) und lenkt in Datenbank (1) oder Textdatei (2).
+*
+*/
+
 int logging = 0;
 
 void (*add_db_entry)();
@@ -52,7 +57,7 @@ void dump_event (irc_session_t * session, const char * event, const char * origi
 		strcat (buf, params[cnt]);
 	}
 
-/*
+
 	if (logging == 2)
 	{
 		void* myaddlog_handle;
@@ -62,9 +67,9 @@ void dump_event (irc_session_t * session, const char * event, const char * origi
 		(*addlog) ("Event \"%s\", origin: \"%s\", params: %d [%s]", event, origin ? origin : "NULL", cnt, buf);
 	}
 
-	else if (logging == 4)
+	else if (logging == 1)
 	{
-*/
+
 		mylib_handle2 = dlopen("dbase.so", RTLD_NOW);
 		sqlite3_open(DB_FILE, &dbhandle);
 
@@ -77,15 +82,15 @@ void dump_event (irc_session_t * session, const char * event, const char * origi
 			printf ("%s\n", dlerror());
 		}
 			
-//		(*add_db_entry)(event, origin, params);
+		(*add_db_entry)(event, origin, params);
 		(*add_db_entry)();
 		printf("hier_3\n");
 			
 				logging = 2;
 				printf("db entry done...");
 
-/*	}
-*/
+	}
+
 }
 
 /**
@@ -220,6 +225,29 @@ void event_channel (irc_session_t * session, const char * event, const char * or
 		pch = strstr (params[1], "logging on");
 		if (pch != NULL)
 			logging = 1;
+
+	}
+
+	strcpy (search_string, "lastseen");	
+	strncat (search_string, ":", 1);
+
+	
+	pch = strstr (params[1], search_string);
+	if (pch != NULL)
+	{
+		irc_cmd_msg (session, params[0], lastseen(params[1]));
+
+	}
+
+
+	strcpy (search_string, "printdb");	
+	strncat (search_string, ":", 1);
+
+	
+	pch = strstr (params[1], search_string);
+	if (pch != NULL)
+	{
+		irc_cmd_msg (session, params[0], printdb());
 
 	}
 }

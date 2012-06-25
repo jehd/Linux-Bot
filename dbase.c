@@ -12,6 +12,14 @@
 
 sqlite3 *dbhandle;
 
+/**
+*Methode trägt ein Event in die Sqlite3-Datenbank ein.
+*
+*@param event: Event-Name
+*@param origin: Event-Quelle
+*@param params: Event-Parameter
+*/
+
 void add_db_entry(const char * event, const char * origin, const char ** params)
 {
 
@@ -29,10 +37,27 @@ void add_db_entry(const char * event, const char * origin, const char ** params)
 
 }
 
-void print_db()
+/**
+*Methode holt das gesamte Log aus der Datenbank.
+*
+*
+*/
+
+char* print_db()
 {
-	sqlite3_exec(dbhandle, "Select * FROM 'events'", NULL, NULL, NULL);
+	sql_query = sqlite3_mprintf("SELECT * FROM events)";
+	irc_cmd_msg (session, params[0], "Hi all");
+	sqlite3_finalize(vm);
+
+	return sql_query;
 }
+
+/**
+*Methode gibt aus, wann IRC-Chatter zum letzten Mal gesehen wurde.
+*
+*@param username: Benutzername des IRC-Chatters.
+*/
+
 
 char* last_seen(const char * username)
 {
@@ -46,6 +71,12 @@ char* last_seen(const char * username)
 
 	return sql_query;
 }
+
+/**
+*Methode erstellt die Tabelle events. Wird zum Programmstart aufgerufen.
+*
+*@param dbhandlex: sqlite Pointer.
+*/
 
 
 void create_table(sqlite3 * dbhandlex)

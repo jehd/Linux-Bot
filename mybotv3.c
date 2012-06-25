@@ -97,13 +97,13 @@ int main (int argc, char **argv)
 	{
 	
 
-	//	if (strcmp(argv[4], "txt") == 0)
-//		{
-//			mylib_handle = dlopen("txtlogger.so", RTLD_NOW);
-//			logging = 1;
-//		}
-//		else if (strcmp(argv[4], "db") == 0)
-//		{
+		if (strcmp(argv[4], "txt") == 0)
+		{
+			mylib_handle = dlopen("txtlogger.so", RTLD_NOW);
+			logging = 1;
+		}
+		else if (strcmp(argv[4], "db") == 0)
+		{
 
 			
 

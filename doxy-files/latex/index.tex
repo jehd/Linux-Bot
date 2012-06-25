@@ -1,4 +1,39 @@
 \hypertarget{index_sec1}{}\section{\-Einleitung}\label{index_sec1}
-\-Hier folgt eine kurze \-Einleitung...\hypertarget{index_sec2}{}\section{\-Subsysteme}\label{index_sec2}
-\hypertarget{index_sec2_1}{}\subsection{\-Motorsteuerung}\label{index_sec2_1}
-\hypertarget{index_sec2_2}{}\subsection{\-Ablaufsteuerung}\label{index_sec2_2}
+\-Dies ist die \-Dokumention des \-I\-R\-C-\/\-Bots. \-Der \-Bot wird über die \-Kommandozeile gestartet, z.\-B. ./mybotv3 irc.\-quakenet.\-org\-:6667 mynick db.
+
+(\-Für nähere \-Informationen siehe manpage.) \hypertarget{index_sec1}{}\section{\-Einleitung}\label{index_sec1}
+\hypertarget{index_sec1_1}{}\section{\-Strukturierung des Codes}\label{index_sec1_1}
+
+\begin{DoxyItemize}
+\item \-Main-\/\-Funktion (\hyperlink{mybotv3_8c}{mybotv3.\-c})
+\item \-Dämonisierung (\hyperlink{daemon_8h}{daemon.\-h})
+\item \-Sqlite3-\/\-Logging (\hyperlink{dbase_8h}{dbase.\-h}, \hyperlink{dbase_8c}{dbase.\-c}, dbase.\-so)
+\item \-D\-B-\/\-Loggin (\hyperlink{dbase_8h}{dbase.\-h}, \hyperlink{dbase_8c}{dbase.\-c}, dbase.\-so)
+\item \-Events (\hyperlink{callbk_8h}{callbk.\-h}) 
+\end{DoxyItemize}\hypertarget{index_sec1_2}{}\section{\-R\-E\-A\-D\-M\-E}\label{index_sec1_2}
+\-Readme vorhanden (\-R\-E\-A\-D\-M\-E.\-md) \hypertarget{index_sec1_3}{}\section{\-License}\label{index_sec1_3}
+\-Lizenzbestimmungen (\-L\-G\-P\-L) in license.\-txt \hypertarget{index_sec1_4}{}\section{\-Manpage}\label{index_sec1_4}
+\-Manpage vorhanden (mymanpage) \hypertarget{index_sec1_5}{}\section{\-Makefile}\label{index_sec1_5}
+\-Manpage vorhanden (\-Makefile.\-h)\hypertarget{index_sec2}{}\section{\-Funktionalitäten}\label{index_sec2}
+\hypertarget{index_sec2_1}{}\subsection{\-Grundfunktionalitäten}\label{index_sec2_1}
+
+\begin{DoxyItemize}
+\item \-Der \-Bot implementiert die libircclient-\/\-Bibliothek (/libircclient-\/1.6)
+\item \-Der \-Bot kann sich auf einem \-I\-R\-C-\/\-Server anmelden (\hyperlink{mybotv3_8c}{mybotv3.\-c} -\/$>$ irc\-\_\-connect)
+\item \-Der \-Bot kann sich in einem \-Channel anmelden. (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event\-\_\-connect -\/$>$ irc\-\_\-cmd\-\_\-join)
+\item \-Servername und \-Channel werden über die \-Kommandozeile als \-Parameter übergeben. (z.\-B. ./mybotv3 irc.\-quakenet.\-org\-:6667 mynick db)
+\item \-Der \-Name des \-Bots wird über die \-Kommandozeile angegeben.
+\item \-Der \-Bot hat weitere \-Steuerungsmöglichkeiten. 
+\end{DoxyItemize}\hypertarget{index_sec2_2}{}\subsection{\-Steuerung des Bots}\label{index_sec2_2}
+
+\begin{DoxyItemize}
+\item \-Der \-Bot reagiert auf \char`\"{}\-Botname\-: xxx\char`\"{}. (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event\-\_\-channel)
+\item \-Das \-Logging ist per \-I\-R\-C-\/\-Commnand an/abschaltbar. \char`\"{}logging on\char`\"{} \char`\"{}logging off\char`\"{}. (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event\-\_\-channel)
+\item \-Der \-Bot gibt ein lastseen an. (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event\-\_\-channel -\/$>$ \hyperlink{dbase_8c}{dbase.\-c})
+\item \-Der \-Bot gibt das log in den \-Chat aus. (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event\-\_\-channel -\/$>$ \hyperlink{dbase_8c}{dbase.\-c}) 
+\end{DoxyItemize}\hypertarget{index_sec2_3}{}\subsection{\-Dämonisieren}\label{index_sec2_3}
+\-Bot wird über daemonize() zu \-Beginn der main dämonisiert (\hyperlink{mybotv3_8c}{mybotv3.\-c} -\/$>$ \hyperlink{daemon_8h}{daemon.\-h}); \hypertarget{index_sec2_4}{}\subsection{\-Plugin-\/\-Mechanismus}\label{index_sec2_4}
+\-Logging über \-Plugin gelöst (dbase.\-so) \hypertarget{index_sec2_5}{}\subsection{\-Weitere Plugins}\label{index_sec2_5}
+\-Logging in \-Textdatei (txtlogger.\-so) \hypertarget{index_sec2_5}{}\subsection{\-Weitere Plugins}\label{index_sec2_5}
+\-Der \-Bot reagiert auf private \-Nachrichten (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event\-\_\-privmsg) \hypertarget{index_sec2_6}{}\subsection{\-Per Command Topic ändern, Nick change etc.}\label{index_sec2_6}
+\-Der \-Bot ändert auf \-Befehl das \-Topic, seinen \-Nick etc. (\hyperlink{callbk_8h}{callbk.\-h} -\/$>$ event-\/channel) 
