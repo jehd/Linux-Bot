@@ -1,0 +1,231 @@
+\hypertarget{callbk_8h}{\section{callbk.\-h \-File \-Reference}
+\label{callbk_8h}\index{callbk.\-h@{callbk.\-h}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdarg.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include \char`\"{}libircclient-\/1.\-6/include/libircclient.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}sqlite3.\-h\char`\"{}}\*
+{\ttfamily \#include $<$dlfcn.\-h$>$}\*
+\subsection*{\-Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirc__ctx__t}{irc\-\_\-ctx\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{callbk_8h_aee925031172607ff8d5cf8b68374bd7f}{\-D\-B\-\_\-\-F\-I\-L\-E}~\char`\"{}test.\-db\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{callbk_8h_ab23277da1ecbb6c245365066d282f95b}{dump\-\_\-event} (irc\-\_\-session\-\_\-t $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{callbk_8h_ab06113e3e2ae5140242ff7c15937ad17}{event\-\_\-join} (irc\-\_\-session\-\_\-t $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{callbk_8h_a16fff293c8b50f13dc8ac4852a8f975e}{event\-\_\-connect} (irc\-\_\-session\-\_\-t $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{callbk_8h_a7ec10a98f038c2b01f2630ad06caa9de}{event\-\_\-privmsg} (irc\-\_\-session\-\_\-t $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{callbk_8h_a47003e205a689e88df1c189a3a25bb0e}{event\-\_\-channel} (irc\-\_\-session\-\_\-t $\ast$session, const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\item 
+void \hyperlink{callbk_8h_a3c61d3dc48fce5a18a3fef2655781433}{event\-\_\-numeric} (irc\-\_\-session\-\_\-t $\ast$session, unsigned int event, const char $\ast$origin, const char $\ast$$\ast$params, unsigned int count)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{callbk_8h_abb649ad81a1f6557c1dc21da6960637a}{mylib\-\_\-handle2}
+\item 
+sqlite3 $\ast$ \hyperlink{callbk_8h_aa57ee5872804735f49943cf9e9500b33}{dbhandle}
+\item 
+int \hyperlink{callbk_8h_aabcfb46aa0feb4ba052db13206995639}{logging} = 0
+\item 
+void($\ast$ \hyperlink{callbk_8h_a8d860ad4c470df7e7ee0db6f8ed04d47}{add\-\_\-db\-\_\-entry} )()
+\item 
+\hyperlink{structirc__ctx__t}{irc\-\_\-ctx\-\_\-t} \hyperlink{callbk_8h_a65c0aa9477e56f99510c769ba8baada8}{ctx}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{callbk_8h_aee925031172607ff8d5cf8b68374bd7f}{\index{callbk.\-h@{callbk.\-h}!\-D\-B\-\_\-\-F\-I\-L\-E@{\-D\-B\-\_\-\-F\-I\-L\-E}}
+\index{\-D\-B\-\_\-\-F\-I\-L\-E@{\-D\-B\-\_\-\-F\-I\-L\-E}!callbk.h@{callbk.\-h}}
+\subsubsection[{\-D\-B\-\_\-\-F\-I\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-D\-B\-\_\-\-F\-I\-L\-E}~\char`\"{}test.\-db\char`\"{}}}\label{callbk_8h_aee925031172607ff8d5cf8b68374bd7f}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{callbk_8h_ab23277da1ecbb6c245365066d282f95b}{\index{callbk.\-h@{callbk.\-h}!dump\-\_\-event@{dump\-\_\-event}}
+\index{dump\-\_\-event@{dump\-\_\-event}!callbk.h@{callbk.\-h}}
+\subsubsection[{dump\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf dump\-\_\-event} (
+\begin{DoxyParamCaption}
+\item[{irc\-\_\-session\-\_\-t $\ast$}]{session, }
+\item[{const char $\ast$}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}}\label{callbk_8h_ab23277da1ecbb6c245365066d282f95b}
+\-Methode wird bei jedem \-I\-R\-C-\/\-Event aufgerufen und behandelt das \-Logging.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em session,\-:} & aktuelle \-I\-R\-C \-Session \\
+\hline
+{\em event,\-:} & \-Event-\/\-Typ \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Paremeter des \-Events, z.\-B. \-Chat-\/\-Text \\
+\hline
+{\em count,\-:} & \-Azahl der \-Parameter \\
+\hline
+\end{DoxyParams}
+\hypertarget{callbk_8h_a47003e205a689e88df1c189a3a25bb0e}{\index{callbk.\-h@{callbk.\-h}!event\-\_\-channel@{event\-\_\-channel}}
+\index{event\-\_\-channel@{event\-\_\-channel}!callbk.h@{callbk.\-h}}
+\subsubsection[{event\-\_\-channel}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf event\-\_\-channel} (
+\begin{DoxyParamCaption}
+\item[{irc\-\_\-session\-\_\-t $\ast$}]{session, }
+\item[{const char $\ast$}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}}\label{callbk_8h_a47003e205a689e88df1c189a3a25bb0e}
+\-Methode wird aufgerufen, wenn eine \-Nachricht im \-Chat-\/room geschrieben wurde. \-Reagiert auf \-Chat-\/\-Nachrichten\-: topic\-: Ändert das \-Topic. nick\-: Ändert den \-Nickname. quit\-: \-Verlässt den \-I\-R\-C-\/\-Chat. mode\-: Ändert den \-Channel mode (z.\-B.\-: +t = geschütztes \-Topic) \-Botname\-: logging on\-: schaltet das logging ein. \-Botname\-: logging off\-: schatet das \-Logging aus. \-Ruft die \-Logging-\/\-Funktion auf.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em session,\-:} & aktuelle \-I\-R\-C \-Session \\
+\hline
+{\em event,\-:} & \-Event-\/\-Typ \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Paremeter des \-Events, z.\-B. \-Chat-\/\-Text \\
+\hline
+{\em count,\-:} & \-Azahl der \-Parameter \\
+\hline
+\end{DoxyParams}
+\hypertarget{callbk_8h_a16fff293c8b50f13dc8ac4852a8f975e}{\index{callbk.\-h@{callbk.\-h}!event\-\_\-connect@{event\-\_\-connect}}
+\index{event\-\_\-connect@{event\-\_\-connect}!callbk.h@{callbk.\-h}}
+\subsubsection[{event\-\_\-connect}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf event\-\_\-connect} (
+\begin{DoxyParamCaption}
+\item[{irc\-\_\-session\-\_\-t $\ast$}]{session, }
+\item[{const char $\ast$}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}}\label{callbk_8h_a16fff293c8b50f13dc8ac4852a8f975e}
+\-Methode wird aufgerufen, wenn sich mit dem \-I\-R\-C-\/\-Server verbunden wurde. \-Weist der \-Variablen ctx die aktuelle session zu. \-Ruft die \-Logging-\/\-Funktion auf.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em session,\-:} & aktuelle \-I\-R\-C \-Session \\
+\hline
+{\em event,\-:} & \-Event-\/\-Typ \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Paremeter des \-Events, z.\-B. \-Chat-\/\-Text \\
+\hline
+{\em count,\-:} & \-Azahl der \-Parameter \\
+\hline
+\end{DoxyParams}
+\hypertarget{callbk_8h_ab06113e3e2ae5140242ff7c15937ad17}{\index{callbk.\-h@{callbk.\-h}!event\-\_\-join@{event\-\_\-join}}
+\index{event\-\_\-join@{event\-\_\-join}!callbk.h@{callbk.\-h}}
+\subsubsection[{event\-\_\-join}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf event\-\_\-join} (
+\begin{DoxyParamCaption}
+\item[{irc\-\_\-session\-\_\-t $\ast$}]{session, }
+\item[{const char $\ast$}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}}\label{callbk_8h_ab06113e3e2ae5140242ff7c15937ad17}
+\-Methode wird aufgerufen, wenn ein \-Channel betreten wurde. \-Setzt obligatorisch den user mode und sendet eine \-Begrüßungs-\/\-Nachricht in den \-Chat. \-Ruft die \-Logging-\/\-Funktion auf.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em session,\-:} & aktuelle \-I\-R\-C \-Session \\
+\hline
+{\em event,\-:} & \-Event-\/\-Typ \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Paremeter des \-Events, z.\-B. \-Chat-\/\-Text \\
+\hline
+{\em count,\-:} & \-Azahl der \-Parameter \\
+\hline
+\end{DoxyParams}
+\hypertarget{callbk_8h_a3c61d3dc48fce5a18a3fef2655781433}{\index{callbk.\-h@{callbk.\-h}!event\-\_\-numeric@{event\-\_\-numeric}}
+\index{event\-\_\-numeric@{event\-\_\-numeric}!callbk.h@{callbk.\-h}}
+\subsubsection[{event\-\_\-numeric}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf event\-\_\-numeric} (
+\begin{DoxyParamCaption}
+\item[{irc\-\_\-session\-\_\-t $\ast$}]{session, }
+\item[{unsigned int}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}}\label{callbk_8h_a3c61d3dc48fce5a18a3fef2655781433}
+\-Methode wird aufgerufen, wenn ein numerisches, nicht zugeordnetes \-Event eintritt. \-Loggt ausschließlich.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em session,\-:} & aktuelle \-I\-R\-C \-Session \\
+\hline
+{\em event,\-:} & \-Event-\/\-Typ \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Paremeter des \-Events, z.\-B. \-Chat-\/\-Text \\
+\hline
+{\em count,\-:} & \-Azahl der \-Parameter \\
+\hline
+\end{DoxyParams}
+\hypertarget{callbk_8h_a7ec10a98f038c2b01f2630ad06caa9de}{\index{callbk.\-h@{callbk.\-h}!event\-\_\-privmsg@{event\-\_\-privmsg}}
+\index{event\-\_\-privmsg@{event\-\_\-privmsg}!callbk.h@{callbk.\-h}}
+\subsubsection[{event\-\_\-privmsg}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf event\-\_\-privmsg} (
+\begin{DoxyParamCaption}
+\item[{irc\-\_\-session\-\_\-t $\ast$}]{session, }
+\item[{const char $\ast$}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params, }
+\item[{unsigned int}]{count}
+\end{DoxyParamCaption}
+)}}\label{callbk_8h_a7ec10a98f038c2b01f2630ad06caa9de}
+\-Methode wird aufgerufen, wenn eine private \-I\-R\-C-\/\-Nachricht empfangen wurde. \-Ruft die \-Logging-\/\-Funktion auf.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em session,\-:} & aktuelle \-I\-R\-C \-Session \\
+\hline
+{\em event,\-:} & \-Event-\/\-Typ \\
+\hline
+{\em origin,\-:} & \-Event-\/\-Quelle \\
+\hline
+{\em params,\-:} & \-Paremeter des \-Events, z.\-B. \-Chat-\/\-Text \\
+\hline
+{\em count,\-:} & \-Azahl der \-Parameter \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{callbk_8h_a8d860ad4c470df7e7ee0db6f8ed04d47}{\index{callbk.\-h@{callbk.\-h}!add\-\_\-db\-\_\-entry@{add\-\_\-db\-\_\-entry}}
+\index{add\-\_\-db\-\_\-entry@{add\-\_\-db\-\_\-entry}!callbk.h@{callbk.\-h}}
+\subsubsection[{add\-\_\-db\-\_\-entry}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf add\-\_\-db\-\_\-entry})()}}\label{callbk_8h_a8d860ad4c470df7e7ee0db6f8ed04d47}
+\hypertarget{callbk_8h_a65c0aa9477e56f99510c769ba8baada8}{\index{callbk.\-h@{callbk.\-h}!ctx@{ctx}}
+\index{ctx@{ctx}!callbk.h@{callbk.\-h}}
+\subsubsection[{ctx}]{\setlength{\rightskip}{0pt plus 5cm}{\bf irc\-\_\-ctx\-\_\-t} {\bf ctx}}}\label{callbk_8h_a65c0aa9477e56f99510c769ba8baada8}
+\hypertarget{callbk_8h_aa57ee5872804735f49943cf9e9500b33}{\index{callbk.\-h@{callbk.\-h}!dbhandle@{dbhandle}}
+\index{dbhandle@{dbhandle}!callbk.h@{callbk.\-h}}
+\subsubsection[{dbhandle}]{\setlength{\rightskip}{0pt plus 5cm}sqlite3$\ast$ {\bf dbhandle}}}\label{callbk_8h_aa57ee5872804735f49943cf9e9500b33}
+\hypertarget{callbk_8h_aabcfb46aa0feb4ba052db13206995639}{\index{callbk.\-h@{callbk.\-h}!logging@{logging}}
+\index{logging@{logging}!callbk.h@{callbk.\-h}}
+\subsubsection[{logging}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf logging} = 0}}\label{callbk_8h_aabcfb46aa0feb4ba052db13206995639}
+\hypertarget{callbk_8h_abb649ad81a1f6557c1dc21da6960637a}{\index{callbk.\-h@{callbk.\-h}!mylib\-\_\-handle2@{mylib\-\_\-handle2}}
+\index{mylib\-\_\-handle2@{mylib\-\_\-handle2}!callbk.h@{callbk.\-h}}
+\subsubsection[{mylib\-\_\-handle2}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf mylib\-\_\-handle2}}}\label{callbk_8h_abb649ad81a1f6557c1dc21da6960637a}

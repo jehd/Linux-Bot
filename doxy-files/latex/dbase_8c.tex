@@ -1,0 +1,66 @@
+\hypertarget{dbase_8c}{\section{dbase.\-c \-File \-Reference}
+\label{dbase_8c}\index{dbase.\-c@{dbase.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdarg.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include \char`\"{}libircclient-\/1.\-6/include/libircclient.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}sqlite3.\-h\char`\"{}}\*
+{\ttfamily \#include $<$time.\-h$>$}\*
+{\ttfamily \#include \char`\"{}dbase.\-h\char`\"{}}\*
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{dbase_8c_a22dc7ad98a9d622b1c9cb6efdd08d22f}{add\-\_\-db\-\_\-entry} (const char $\ast$event, const char $\ast$origin, const char $\ast$$\ast$params)
+\item 
+void \hyperlink{dbase_8c_a9853b1820d4379ee3fe29461709d40c8}{print\-\_\-db} ()
+\item 
+char $\ast$ \hyperlink{dbase_8c_aa1efc8422255bc036e9d4393412c784a}{last\-\_\-seen} (const char $\ast$username)
+\item 
+void \hyperlink{dbase_8c_addc31b4cf7d993be3efbf2704ebac49d}{create\-\_\-table} (sqlite3 $\ast$dbhandlex)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+sqlite3 $\ast$ \hyperlink{dbase_8c_aa57ee5872804735f49943cf9e9500b33}{dbhandle}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{dbase_8c_a22dc7ad98a9d622b1c9cb6efdd08d22f}{\index{dbase.\-c@{dbase.\-c}!add\-\_\-db\-\_\-entry@{add\-\_\-db\-\_\-entry}}
+\index{add\-\_\-db\-\_\-entry@{add\-\_\-db\-\_\-entry}!dbase.c@{dbase.\-c}}
+\subsubsection[{add\-\_\-db\-\_\-entry}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf add\-\_\-db\-\_\-entry} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{event, }
+\item[{const char $\ast$}]{origin, }
+\item[{const char $\ast$$\ast$}]{params}
+\end{DoxyParamCaption}
+)}}\label{dbase_8c_a22dc7ad98a9d622b1c9cb6efdd08d22f}
+\hypertarget{dbase_8c_addc31b4cf7d993be3efbf2704ebac49d}{\index{dbase.\-c@{dbase.\-c}!create\-\_\-table@{create\-\_\-table}}
+\index{create\-\_\-table@{create\-\_\-table}!dbase.c@{dbase.\-c}}
+\subsubsection[{create\-\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf create\-\_\-table} (
+\begin{DoxyParamCaption}
+\item[{sqlite3 $\ast$}]{dbhandlex}
+\end{DoxyParamCaption}
+)}}\label{dbase_8c_addc31b4cf7d993be3efbf2704ebac49d}
+\hypertarget{dbase_8c_aa1efc8422255bc036e9d4393412c784a}{\index{dbase.\-c@{dbase.\-c}!last\-\_\-seen@{last\-\_\-seen}}
+\index{last\-\_\-seen@{last\-\_\-seen}!dbase.c@{dbase.\-c}}
+\subsubsection[{last\-\_\-seen}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf last\-\_\-seen} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{username}
+\end{DoxyParamCaption}
+)}}\label{dbase_8c_aa1efc8422255bc036e9d4393412c784a}
+\hypertarget{dbase_8c_a9853b1820d4379ee3fe29461709d40c8}{\index{dbase.\-c@{dbase.\-c}!print\-\_\-db@{print\-\_\-db}}
+\index{print\-\_\-db@{print\-\_\-db}!dbase.c@{dbase.\-c}}
+\subsubsection[{print\-\_\-db}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-\_\-db} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{dbase_8c_a9853b1820d4379ee3fe29461709d40c8}
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{dbase_8c_aa57ee5872804735f49943cf9e9500b33}{\index{dbase.\-c@{dbase.\-c}!dbhandle@{dbhandle}}
+\index{dbhandle@{dbhandle}!dbase.c@{dbase.\-c}}
+\subsubsection[{dbhandle}]{\setlength{\rightskip}{0pt plus 5cm}sqlite3$\ast$ {\bf dbhandle}}}\label{dbase_8c_aa57ee5872804735f49943cf9e9500b33}

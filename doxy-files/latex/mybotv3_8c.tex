@@ -1,0 +1,77 @@
+\hypertarget{mybotv3_8c}{\section{mybotv3.\-c \-File \-Reference}
+\label{mybotv3_8c}\index{mybotv3.\-c@{mybotv3.\-c}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdarg.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include \char`\"{}libircclient.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}callbk.\-h\char`\"{}}\*
+{\ttfamily \#include $<$dlfcn.\-h$>$}\*
+{\ttfamily \#include $<$unistd.\-h$>$}\*
+{\ttfamily \#include $<$sys/types.\-h$>$}\*
+{\ttfamily \#include $<$sys/stat.\-h$>$}\*
+{\ttfamily \#include \char`\"{}daemon.\-h\char`\"{}}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{mybotv3_8c_aee925031172607ff8d5cf8b68374bd7f}{\-D\-B\-\_\-\-F\-I\-L\-E}~\char`\"{}test.\-db\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{mybotv3_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{mybotv3_8c_a0838f0661fcf38642ec573a9cbcd6230}{mylib\-\_\-handle}
+\item 
+sqlite3 $\ast$ \hyperlink{mybotv3_8c_aa57ee5872804735f49943cf9e9500b33}{dbhandle}
+\item 
+void($\ast$ \hyperlink{mybotv3_8c_a3b99c68e016b9769eb219f9056635499}{create\-\_\-table} )()
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{mybotv3_8c_aee925031172607ff8d5cf8b68374bd7f}{\index{mybotv3.\-c@{mybotv3.\-c}!\-D\-B\-\_\-\-F\-I\-L\-E@{\-D\-B\-\_\-\-F\-I\-L\-E}}
+\index{\-D\-B\-\_\-\-F\-I\-L\-E@{\-D\-B\-\_\-\-F\-I\-L\-E}!mybotv3.c@{mybotv3.\-c}}
+\subsubsection[{\-D\-B\-\_\-\-F\-I\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-D\-B\-\_\-\-F\-I\-L\-E}~\char`\"{}test.\-db\char`\"{}}}\label{mybotv3_8c_aee925031172607ff8d5cf8b68374bd7f}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{mybotv3_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{mybotv3.\-c@{mybotv3.\-c}!main@{main}}
+\index{main@{main}!mybotv3.c@{mybotv3.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{mybotv3_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+\-Main \-Funktion
+
+\-Verweist die \-I\-R\-C \-Events auf die jeweiligen \-Funktionen. \-Nimmt die \-Benutzereingabe entgegen. \-Startet \-Endlossschleife.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em argv\mbox{[}1\mbox{]}} & irc server \\
+\hline
+{\em argv\mbox{[}2\mbox{]}} & nickname \\
+\hline
+{\em argv\mbox{[}3\mbox{]}} & channel \\
+\hline
+{\em argv\mbox{[}4\mbox{]}} & logging-\/\-Plugins \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{mybotv3_8c_a3b99c68e016b9769eb219f9056635499}{\index{mybotv3.\-c@{mybotv3.\-c}!create\-\_\-table@{create\-\_\-table}}
+\index{create\-\_\-table@{create\-\_\-table}!mybotv3.c@{mybotv3.\-c}}
+\subsubsection[{create\-\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf create\-\_\-table})()}}\label{mybotv3_8c_a3b99c68e016b9769eb219f9056635499}
+\hypertarget{mybotv3_8c_aa57ee5872804735f49943cf9e9500b33}{\index{mybotv3.\-c@{mybotv3.\-c}!dbhandle@{dbhandle}}
+\index{dbhandle@{dbhandle}!mybotv3.c@{mybotv3.\-c}}
+\subsubsection[{dbhandle}]{\setlength{\rightskip}{0pt plus 5cm}sqlite3$\ast$ {\bf dbhandle}}}\label{mybotv3_8c_aa57ee5872804735f49943cf9e9500b33}
+\hypertarget{mybotv3_8c_a0838f0661fcf38642ec573a9cbcd6230}{\index{mybotv3.\-c@{mybotv3.\-c}!mylib\-\_\-handle@{mylib\-\_\-handle}}
+\index{mylib\-\_\-handle@{mylib\-\_\-handle}!mybotv3.c@{mybotv3.\-c}}
+\subsubsection[{mylib\-\_\-handle}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf mylib\-\_\-handle}}}\label{mybotv3_8c_a0838f0661fcf38642ec573a9cbcd6230}
